@@ -9,5 +9,5 @@ on 'test', sub {
 };
 
 # modules
-requires		'Attean'					, 0;
+requires        'Attean'                    , 0;
 requires        'RDF::LDF'                  , 0;

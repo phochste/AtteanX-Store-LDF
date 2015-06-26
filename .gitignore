@@ -1,0 +1,16 @@
+!.gitignore
+.DS_Store
+*.swp
+.build
+_build
+blib
+Build
+cover_db
+LICENSE
+Makefile.PL
+MANIFEST*
+META.json
+MYMETA.*
+AtteanX-*
+.perl-version
+local

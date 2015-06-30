@@ -66,6 +66,29 @@ sub _ldf {
     RDF::LDF->new(url => $self->endpoint_url);
 }
 
+=item count_triples ( $subject, $predicate, $object) 
+
+Return the count of triples matching the specified subject, predicate and 
+objects.
+
+=cut
+sub count_triples {
+    my $self    = shift;
+    my ($s_pattern,$p_pattern,$o_pattern) = @_;
+
+    my $ldf_iter = $self->ldf->get_statements(
+        defined $s_pattern ? $s_pattern->ntriples_string : undef,
+        defined $p_pattern ? $p_pattern->ntriples_string : undef,
+        defined $o_pattern ? $o_pattern->ntriples_string : undef
+    );
+
+    return 0 unless defined $ldf_iter;
+
+    my ($statement,$info) = $ldf_iter->();
+
+    return $info->{'hydra_totalItems'};
+}
+
 =item get_triples( $subject, $predicate, $object)
 
 Returns a stream object of all statements matching the specified subject,
@@ -77,10 +100,13 @@ sub get_triples {
     my ($s_pattern,$p_pattern,$o_pattern) = @_;
 
     my $ldf_iter = $self->ldf->get_statements(
-        $s_pattern ? $s_pattern->ntriples_string : undef,
-        $p_pattern ? $p_pattern->ntriples_string : undef,
-        $o_pattern ? $o_pattern->ntriples_string : undef
+        defined $s_pattern ? $s_pattern->ntriples_string : undef,
+        defined $p_pattern ? $p_pattern->ntriples_string : undef,
+        defined $o_pattern ? $o_pattern->ntriples_string : undef
     );
+
+    return Attean::ListIterator->new(values => [] , item_type => 'Attean::API::Triple')
+            unless $ldf_iter;
 
     my $iter = Attean::CodeIterator->new(
         generator => sub {

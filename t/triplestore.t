@@ -53,7 +53,9 @@ sub create_store {
 	$useragent->register_psgi('example.org', sub {
 	    my $env = shift;
 	    $ld->request(Plack::Request->new($env));
-		return $ld->response($endpoint)->finalize;
+		my $uri = $endpoint;
+	   	$uri .= sprintf "?%s" , $env->{QUERY_STRING} if length $env->{QUERY_STRING};
+		return $ld->response($uri)->finalize;
 	});
 
 	my $store = Attean->get_store('LDF')->new(endpoint_url => $endpoint);

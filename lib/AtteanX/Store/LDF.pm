@@ -73,7 +73,8 @@ sub _term_as_string {
     }
     elsif ($term->does('Attean::API::Literal')) {
         return $term->as_string; # includes quotes and any language or datatype
-    } else {
+    } 
+    else {
         return $term->value; # the raw IRI or blank node identifier value, without other syntax
     }
 }
@@ -87,8 +88,6 @@ objects.
 sub count_triples {
     my $self    = shift;
     my ($s_pattern,$p_pattern,$o_pattern) = @_;
-
-    return 0 unless defined $s_pattern || defined $p_pattern || defined $o_pattern;
            
     my $ldf_iter = $self->ldf->get_statements(
         $self->_term_as_string($s_pattern),

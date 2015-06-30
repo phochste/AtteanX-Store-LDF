@@ -66,7 +66,19 @@ sub _ldf {
     RDF::LDF->new(url => $self->endpoint_url);
 }
 
-=item count_triples ( $subject, $predicate, $object) 
+sub _term_as_string {
+    my ($self,$term) = @_;  
+    if (!defined $term) {
+        return undef
+    }
+    elsif ($term->does('Attean::API::Literal')) {
+        return $term->as_string; # includes quotes and any language or datatype
+    } else {
+        return $term->value; # the raw IRI or blank node identifier value, without other syntax
+    }
+}
+
+=item count_triples ( $subject, $predicate, $object ) 
 
 Return the count of triples matching the specified subject, predicate and 
 objects.
@@ -76,10 +88,12 @@ sub count_triples {
     my $self    = shift;
     my ($s_pattern,$p_pattern,$o_pattern) = @_;
 
+    return 0 unless defined $s_pattern || defined $p_pattern || defined $o_pattern;
+           
     my $ldf_iter = $self->ldf->get_statements(
-        defined $s_pattern ? $s_pattern->ntriples_string : undef,
-        defined $p_pattern ? $p_pattern->ntriples_string : undef,
-        defined $o_pattern ? $o_pattern->ntriples_string : undef
+        $self->_term_as_string($s_pattern),
+        $self->_term_as_string($p_pattern),
+        $self->_term_as_string($o_pattern)
     );
 
     return 0 unless defined $ldf_iter;
@@ -100,9 +114,9 @@ sub get_triples {
     my ($s_pattern,$p_pattern,$o_pattern) = @_;
 
     my $ldf_iter = $self->ldf->get_statements(
-        defined $s_pattern ? $s_pattern->ntriples_string : undef,
-        defined $p_pattern ? $p_pattern->ntriples_string : undef,
-        defined $o_pattern ? $o_pattern->ntriples_string : undef
+        $self->_term_as_string($s_pattern),
+        $self->_term_as_string($p_pattern),
+        $self->_term_as_string($o_pattern)
     );
 
     return Attean::ListIterator->new(values => [] , item_type => 'Attean::API::Triple')

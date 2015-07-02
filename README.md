@@ -2,6 +2,11 @@
 
 AtteanX::Store::LDF - Linked Data Fragment RDF store
 
+# STATUS
+[![Build Status](https://travis-ci.org/phochste/AtteanX-Store-LDF.svg)](https://travis-ci.org/phochste/AtteanX-Store-LDF)
+[![Coverage Status](https://coveralls.io/repos/phochste/AtteanX-Store-LDF/badge.svg)](https://coveralls.io/r/phochste/AtteanX-Store-LDF)
+[![Kwalitee Score](http://cpants.cpanauthors.org/dist/AtteanX-Store-LDF.png)](http://cpants.cpanauthors.org/dist/AtteanX-Store-LDF)
+
 # SYNOPSIS
 
     use v5.14;

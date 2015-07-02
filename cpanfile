@@ -12,5 +12,5 @@ on 'test', sub {
 };
 
 # modules
-requires        'Attean'                    , 0;
+requires        'Attean'                    , '>= 0.006';
 requires        'RDF::LDF'                  , 0;

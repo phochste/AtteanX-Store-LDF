@@ -8,7 +8,6 @@ Build
 cover_db
 LICENSE
 Makefile.PL
-MANIFEST*
 META.json
 MYMETA.*
 AtteanX-*

@@ -4,13 +4,15 @@ perl:
     - "5.18"
     - "5.16"
 
-install:
-    - cpanm --quiet --notest --skip-satisfied Dist::Milla
-    - cpanm --installdeps .
+env: PERL_CPANM_OPT="--notest --force --skip-satisfied"
 
 # fix https://github.com/miyagawa/cpanminus/issues/412    
 before_install:
     - cpanm -nq Pod::Readme
+
+install:
+    - cpanm --quiet --notest --skip-satisfied Dist::Milla
+    - cpanm --installdeps .
 
 # full release test
 script:

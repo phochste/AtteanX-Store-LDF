@@ -6,7 +6,7 @@ on 'test', sub {
   requires 'Test::Exception', 0;
   requires 'Test::Roo' , 0;
   requires 'Test::LWP::UserAgent', 0;
-  requires 'RDF::LinkedData', 0;
+  requires 'RDF::LinkedData', '>=0.74';
   requires 'RDF::Generator::Void', 0;
   requires 'Config::JFDI', 0;
 };

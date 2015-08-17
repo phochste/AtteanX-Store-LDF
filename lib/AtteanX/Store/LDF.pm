@@ -88,13 +88,13 @@ sub _term_as_string {
     }
 }
 
-=item count_triples ( $subject, $predicate, $object ) 
+=item count_triples_estimate( $subject, $predicate, $object ) 
 
 Return the count of triples matching the specified subject, predicate and 
 objects.
 
 =cut
-sub count_triples {
+sub count_triples_estimate {
     my $self    = shift;
     my ($s_pattern,$p_pattern,$o_pattern) = @_;
            
@@ -108,7 +108,7 @@ sub count_triples {
 
     my ($statement,$info) = $ldf_iter->();
 
-    return $info->{'hydra_totalItems'};
+    return $info->{'void_triples'};
 }
 
 =item get_triples( $subject, $predicate, $object)

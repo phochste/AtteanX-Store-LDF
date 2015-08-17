@@ -42,7 +42,7 @@ Beyond the methods documented below, this class inherits methods from the
 
     Returns a new LDF-backed storage object.
 
-- count\_triples ( $subject, $predicate, $object ) 
+- count\_triples\_estimate( $subject, $predicate, $object ) 
 
     Return the count of triples matching the specified subject, predicate and 
     objects.

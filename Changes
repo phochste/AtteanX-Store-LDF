@@ -1,6 +1,7 @@
 Revision history for Catmandu
 
 {{$NEXT}}
-
+    - changing count_triples into more accurate count_triples_estimate
+    
 0.001  2015-07-03 15:08:11 CEST
     - initial release

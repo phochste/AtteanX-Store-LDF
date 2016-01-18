@@ -1,3 +1,5 @@
+=pod
+
 =head1 NAME
 
 AtteanX::Store::LDF::Plan::Triple - Plan for evaluation of Linked Data Fragments
@@ -21,6 +23,7 @@ This plan class will aid a query planner that seeks to incorporate
 Linked Data Fragments into the query planning.
 
 =cut
+
 
 package AtteanX::Store::LDF::Plan::Triple;
 

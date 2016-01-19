@@ -7,20 +7,8 @@ use Moo;
 use Types::Standard qw(InstanceOf);
 use namespace::clean;
 
-has 'store'    => (
-						 is => 'ro',
-						 isa => InstanceOf['AtteanX::Store::LDF'],
-						 required => 1,
-						 handles => { size => 'size' ,
-										  get_quads => 'get_triples',
-										  count_quads => 'count_triples',
-										  count_quads_estimate => 'count_triples_estimate',
-										  plans_for_algebra => 'plans_for_algebra'
-										}
-						);
+extends 'Attean::API::TripleModel'; #, 'Attean::API::CostPlanner';
 
-
-with 'Attean::API::Model'; #, 'Attean::API::CostPlanner';
 
 # sub cost_for_plan {
 # 	my $self = shift;

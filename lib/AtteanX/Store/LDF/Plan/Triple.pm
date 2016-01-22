@@ -33,6 +33,7 @@ use warnings;
 use Moo;
 use Data::Dumper;
 use Class::Method::Modifiers;
+use Attean;
 
 extends 'Attean::Plan::Quad';
 

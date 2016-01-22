@@ -174,7 +174,6 @@ sub get_triples {
 sub cost_for_plan {
 	my $self	= shift;
  	my $plan	= shift;
- 	my $planner	= shift;
 	if ($plan->isa('AtteanX::Store::LDF::Plan::Triple')) {
 		return 10 + int(990 *
 							 $self->count_triples_estimate($plan->subject,

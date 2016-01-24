@@ -27,6 +27,9 @@ my $plan = AtteanX::Store::LDF::Plan::Triple->new(subject => variable('s'),
 																  distinct => 0
 );
 
+isa_ok($plan, 'AtteanX::Store::LDF::Plan::Triple');
+is($plan->as_string, "- LDFQuad { ?s, <http://example.org/p>, ?o, ?graph }\n", 'Serialized plan ok');
+
 is($store->cost_for_plan($plan), 12, 'Correct');
 
 done_testing;

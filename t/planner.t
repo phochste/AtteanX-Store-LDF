@@ -11,12 +11,12 @@ package TestCreateStore {
 };
 
 my $triples = [
-                                   triple(iri('http://example.org/bar'), iri('http://example.org/c'), iri('http://example.org/foo')),
-                                   triple(iri('http://example.org/foo'), iri('http://example.org/p'), iri('http://example.org/baz')),
-                                   triple(iri('http://example.org/baz'), iri('http://example.org/b'), literal('2')),
-                                   triple(iri('http://example.com/foo'), iri('http://example.org/p'), literal('dahut')),
-                                   triple(iri('http://example.org/dahut'), iri('http://example.org/dahut'), literal('1')),
-                                  ];
+					triple(iri('http://example.org/bar'), iri('http://example.org/c'), iri('http://example.org/foo')),
+					triple(iri('http://example.org/foo'), iri('http://example.org/p'), iri('http://example.org/baz')),
+					triple(iri('http://example.org/baz'), iri('http://example.org/b'), literal('2')),
+					triple(iri('http://example.com/foo'), iri('http://example.org/p'), literal('dahut')),
+					triple(iri('http://example.org/dahut'), iri('http://example.org/dahut'), literal('1')),
+				  ];
 
 my $test = TestCreateStore->new;
 my $store = $test->create_store(triples => $triples);
@@ -25,7 +25,7 @@ my $plan = AtteanX::Store::LDF::Plan::Triple->new(subject => variable('s'),
 																  predicate => iri('http://example.org/p'),
 																  object => variable('o'),
 																  distinct => 0
-);
+																 );
 
 isa_ok($plan, 'AtteanX::Store::LDF::Plan::Triple');
 is($plan->as_string, "- LDFQuad { ?s, <http://example.org/p>, ?o, ?graph }\n", 'Serialized plan ok');

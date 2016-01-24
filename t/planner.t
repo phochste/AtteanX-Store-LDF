@@ -30,6 +30,6 @@ my $plan = AtteanX::Store::LDF::Plan::Triple->new(subject => variable('s'),
 isa_ok($plan, 'AtteanX::Store::LDF::Plan::Triple');
 is($plan->as_string, "- LDFQuad { ?s, <http://example.org/p>, ?o, ?graph }\n", 'Serialized plan ok');
 
-is($store->cost_for_plan($plan), 12, 'Correct');
+is($store->cost_for_plan($plan), 406, 'Correct cost for plan');
 
 done_testing;

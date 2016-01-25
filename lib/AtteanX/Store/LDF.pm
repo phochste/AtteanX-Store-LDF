@@ -52,7 +52,8 @@ use Types::Standard qw(Str);
 use RDF::LDF;
 use namespace::clean;
 
-with 'Attean::API::TripleStore';
+with 'Attean::API::TripleStore', 'MooX::Log::Any';
+
 
 =head1 METHODS
 
@@ -192,9 +193,12 @@ sub cost_for_plan {
 			push(@args, $plan->object);
 		}
 
-		return 10 + int(990 *
-							 $self->count_triples_estimate(@args)
-							 / $self->count_triples_estimate())
+		my $totals = $self->count_triples_estimate();
+		if ($totals < 1) {
+			$self->log->error("Total number of triples in model were $totals, probably an error");
+			return 10000; # Probably a plan we don't want
+		}
+		return 10 + int(990 * $self->count_triples_estimate(@args) / $totals)
 	}
 	return;
 }

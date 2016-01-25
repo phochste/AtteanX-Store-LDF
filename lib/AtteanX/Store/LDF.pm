@@ -175,10 +175,25 @@ sub cost_for_plan {
 	my $self	= shift;
  	my $plan	= shift;
 	if ($plan->isa('AtteanX::Store::LDF::Plan::Triple')) {
+		my @args; # TODO, temporary, see https://github.com/kasei/attean/issues/61
+		if ($plan->subject->is_variable) {
+			push(@args, undef);
+		} else {
+			push(@args, $plan->subject);
+		}
+		if ($plan->predicate->is_variable) {
+			push(@args, undef);
+		} else {
+			push(@args, $plan->predicate);
+		}
+		if ($plan->object->is_variable) {
+			push(@args, undef);
+		} else {
+			push(@args, $plan->object);
+		}
+
 		return 10 + int(990 *
-							 $self->count_triples_estimate($plan->subject,
-																	 $plan->predicate,
-																	 $plan->object)
+							 $self->count_triples_estimate(@args)
 							 / $self->count_triples_estimate())
 	}
 	return;

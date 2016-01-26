@@ -26,9 +26,12 @@ around 'access_plans' => sub {
 	# include queries to the remote SPARQL endpoint
 	my @plans = $orig->(@params);
 	# Add my plans
-	push(@plans, AtteanX::Store::LDF::Plan::Triple->new($pattern->subject,
-																		 $pattern->predicate,
-																		 $pattern->object,
-																		 $active_graphs));
+	push(@plans, AtteanX::Store::LDF::Plan::Triple->new(subject => $pattern->subject,
+																		 predicate => $pattern->predicate,
+																		 object => $pattern->object,
+																		 graph => $active_graphs,
+																		 distinct => 0));
 	return @plans;
-}
+};
+
+1;

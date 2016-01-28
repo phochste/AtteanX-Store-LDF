@@ -25,7 +25,7 @@ my $plan = AtteanX::Store::LDF::Plan::Triple->new(subject => variable('s'),
 																  distinct => 0
 																 );
 isa_ok($plan, 'AtteanX::Store::LDF::Plan::Triple');
-is($plan->as_string, "- LDFQuad { ?s, <http://example.org/p>, ?o, ?graph }\n", 'Serialized plan ok');
+is($plan->as_string, "- LDFTriple { ?s, <http://example.org/p>, ?o }\n", 'Serialized plan ok');
 
 
 {
@@ -45,7 +45,7 @@ is($plan->as_string, "- LDFQuad { ?s, <http://example.org/p>, ?o, ?graph }\n", '
 																		distinct => 0
 																	  );
 	isa_ok($plan2, 'AtteanX::Store::LDF::Plan::Triple');
-	is($plan2->as_string, "- LDFQuad { ?s, <http://example.org/nothere>, ?o, ?graph }\n", 'Serialized plan ok');
+	is($plan2->as_string, "- LDFTriple { ?s, <http://example.org/nothere>, ?o }\n", 'Serialized plan ok');
 	my $store = $test->create_store(triples => $triples);
 	is($store->cost_for_plan($plan2), 10, 'Correct cost for plan with populated store but no hits');
 }

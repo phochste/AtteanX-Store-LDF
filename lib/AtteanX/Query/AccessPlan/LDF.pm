@@ -29,7 +29,6 @@ around 'access_plans' => sub {
 	push(@plans, AtteanX::Store::LDF::Plan::Triple->new(subject => $pattern->subject,
 																		 predicate => $pattern->predicate,
 																		 object => $pattern->object,
-																		 graph => $active_graphs,
 																		 distinct => 0));
 	return @plans;
 };

@@ -67,3 +67,60 @@ sub create_store {
 }
 
 1;
+
+=pod
+
+=head1 NAME
+
+Test::Attean::Store::LDF::Role::CreateStore - Create a LDF store for tests
+
+=head1 SYNOPSIS
+
+Either:
+
+  use Test::More;
+  use Test::Roo;
+  with 'Test::Attean::TripleStore', 'Test::Attean::Store::LDF::Role::CreateStore';
+  run_me;
+  done_testing;
+
+or:
+
+  package TestCreateStore {
+   	use Moo;
+   	with 'Test::Attean::Store::LDF::Role::CreateStore';
+  };
+  my $triples = [
+  				   triple(iri('http://example.org/bar'), iri('http://example.org/c'), iri('http://example.org/foo')),
+               # [...]
+				  ];
+
+  my $test = TestCreateStore->new;
+  my $store = $test->create_store(triples => $triples);
+
+
+=head1 DESCRIPTION
+
+
+There are two ways of using this. The original idea is to use it to
+test a triple/quad that uses L<Test::Attean::TripleStore>, like in the
+first example in the synopsis.
+
+It is also possible to utilize this role like in the second example to
+create a store for testing other parts of the code too. In that
+example, first wrap a class around the role, then create an arrayref
+of triples, which should be used to populate the store. Then,
+instantiate an object of the class, and call it's C<create_store>
+method with the triples. Now, you have a proper store that can be used
+in tests.
+
+=head1 AUTHOR
+
+Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
+
+=head1 COPYRIGHT AND LICENCE
+
+This software is copyright (c) 2015, 2016 by Kjetil Kjernsmo.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.

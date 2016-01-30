@@ -172,6 +172,14 @@ sub get_triples {
     return $iter;
 }
 
+=item cost_for_plan($plan)
+
+Returns an cost estimation for a single LDF triple based on
+estimates. The cost will be in the interval 10-1000 if the supplied
+argument is a L<AtteanX::Store::LDF::Plan::Triple>, undef otherwise.
+
+=cut
+
 sub cost_for_plan {
 	my $self	= shift;
  	my $plan	= shift;

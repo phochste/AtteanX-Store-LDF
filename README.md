@@ -38,9 +38,11 @@ For more information on Triple Pattern Fragments consult [http://linkeddatafragm
 Beyond the methods documented below, this class inherits methods from the
 [Attean::API::TripleStore](https://metacpan.org/pod/Attean::API::TripleStore) class.
 
-- new( endpoint\_url => $endpoint\_url )
+- new( start\_url => $start\_url )
 
-    Returns a new LDF-backed storage object.
+    Returns a new LDF-backed storage object. The required `start_url`
+    argument is a URL pointing at any Linked Data Fragment. The attribure
+    will be coerced, so it can be a string, a URI object, etc.
 
 - count\_triples\_estimate( $subject, $predicate, $object ) 
 

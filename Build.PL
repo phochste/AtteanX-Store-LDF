@@ -15,8 +15,7 @@ my %module_build_args = (
   },
   "dist_abstract" => "Linked Data Fragment RDF store",
   "dist_author" => [
-    "Patrick Hochstenbach  C<< <patrick.hochstenbach\@ugent.be> >>",
-	 "Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>"
+    "Patrick Hochstenbach  C<< <patrick.hochstenbach\@ugent.be> >>"
   ],
   "dist_name" => "AtteanX-Store-LDF",
   "dist_version" => "0.005_02",
@@ -25,6 +24,7 @@ my %module_build_args = (
   "recursive_test_files" => 1,
   "requires" => {
     "Attean" => "0.010",
+    "MooX::Log::Any" => 0,
     "RDF::LDF" => 0,
     "perl" => "v5.14.1"
   },
@@ -40,7 +40,6 @@ my %module_build_args = (
 
 
 my %fallback_build_requires = (
-  "Config::JFDI" => 0,
   "Module::Build" => "0.28",
   "RDF::Generator::Void" => 0,
   "RDF::LinkedData" => "0.74",

@@ -82,7 +82,7 @@ sub _croak_on_endpoint {
 
 sub _ldf {
     my $self = shift;
-    RDF::LDF->new(url => $self->start_url);
+    RDF::LDF->new(url => $self->start_url->as_string);
 }
 
 sub _term_as_string {

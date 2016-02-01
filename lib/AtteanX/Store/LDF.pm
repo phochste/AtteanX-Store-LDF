@@ -44,7 +44,7 @@ use warnings;
 
 package AtteanX::Store::LDF;
 
-our $VERSION = '0.003';
+our $VERSION = '0.005_01';
 
 use Moo;
 use Attean::API::Store;

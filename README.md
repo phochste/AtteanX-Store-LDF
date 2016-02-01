@@ -52,6 +52,12 @@ Beyond the methods documented below, this class inherits methods from the
     Returns a stream object of all statements matching the specified subject,
     predicate and objects. Any of the arguments may be undef to match any value.
 
+- cost\_for\_plan($plan)
+
+    Returns an cost estimation for a single LDF triple based on
+    estimates. The cost will be in the interval 10-1000 if the supplied
+    argument is a [AtteanX::Store::LDF::Plan::Triple](https://metacpan.org/pod/AtteanX::Store::LDF::Plan::Triple), undef otherwise.
+
 # SEE ALSO
 
 [Attean](https://metacpan.org/pod/Attean) , [Attean::API::TripleStore](https://metacpan.org/pod/Attean::API::TripleStore)
@@ -64,9 +70,11 @@ at [https://github.com/phochste/AtteanX-Store-LDF](https://github.com/phochste/A
 # AUTHOR
 
 Patrick Hochstenbach  `<patrick.hochstenbach@ugent.be>`
+Kjetil Kjernsmo &lt;kjetilk@cpan.org>.
 
 # COPYRIGHT
 
 This software is copyright (c) 2015 by Patrick Hochstenbach.
+This software is copyright (c) 2016 by Patrick Hochstenbach and Kjetil Kjernsmo.
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

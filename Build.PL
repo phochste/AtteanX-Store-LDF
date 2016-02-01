@@ -23,12 +23,11 @@ my %module_build_args = (
   "module_name" => "AtteanX::Store::LDF",
   "recursive_test_files" => 1,
   "requires" => {
-    "Attean" => "0.006",
+    "Attean" => "0.010",
     "RDF::LDF" => 0,
     "perl" => "v5.14.1"
   },
   "test_requires" => {
-    "Config::JFDI" => 0,
     "RDF::Generator::Void" => 0,
     "RDF::LinkedData" => "0.74",
     "Test::Exception" => 0,

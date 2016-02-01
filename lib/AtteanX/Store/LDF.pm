@@ -38,6 +38,7 @@ AtteanX::Store::LDF provides a triple-store connected to a Linked Data Fragment 
 For more information on Triple Pattern Fragments consult L<http://linkeddatafragments.org/>
 
 =cut
+
 use v5.14;
 use warnings;
 
@@ -229,10 +230,12 @@ at L<https://github.com/phochste/AtteanX-Store-LDF>.
 =head1 AUTHOR
 
 Patrick Hochstenbach  C<< <patrick.hochstenbach@ugent.be> >>
+Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
 
 =head1 COPYRIGHT
 
 This software is copyright (c) 2015 by Patrick Hochstenbach.
+This software is copyright (c) 2016 by Patrick Hochstenbach and Kjetil Kjernsmo.
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 

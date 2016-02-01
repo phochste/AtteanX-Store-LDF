@@ -15,7 +15,8 @@ my %module_build_args = (
   },
   "dist_abstract" => "Linked Data Fragment RDF store",
   "dist_author" => [
-    "Patrick Hochstenbach  C<< <patrick.hochstenbach\@ugent.be> >>"
+    "Patrick Hochstenbach  C<< <patrick.hochstenbach\@ugent.be> >>",
+	 "Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>"
   ],
   "dist_name" => "AtteanX-Store-LDF",
   "dist_version" => "0.005_01",

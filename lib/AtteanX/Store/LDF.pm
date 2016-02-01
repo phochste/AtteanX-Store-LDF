@@ -85,7 +85,7 @@ sub _term_as_string {
 	 elsif ($term->is_variable) {
 		 return undef;
 	 }
-    elsif ($term->does('Attean::API::Literal')) {
+    elsif ($term->is_literal) {
         return $term->as_string; # includes quotes and any language or datatype
     } 
     else {

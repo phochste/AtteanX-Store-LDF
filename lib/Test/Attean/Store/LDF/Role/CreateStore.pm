@@ -11,6 +11,8 @@ use HTTP::Message::PSGI;
 use Data::Dumper;
 use namespace::clean;
 
+our $VERSION = '0.003';
+
 sub create_store {
 	my $self = shift;
 	my %args        = @_;
@@ -117,9 +119,11 @@ in tests.
 =head1 AUTHOR
 
 Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
+Patrick Hochstenbach  C<< <patrick.hochstenbach@ugent.be> >>
 
 =head1 COPYRIGHT AND LICENCE
 
+This software is copyright (c) 2015 by Patrick Hochstenbach.
 This software is copyright (c) 2015, 2016 by Kjetil Kjernsmo.
 
 This is free software; you can redistribute it and/or modify it under

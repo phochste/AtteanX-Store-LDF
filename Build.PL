@@ -19,7 +19,7 @@ my %module_build_args = (
 	 "Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>"
   ],
   "dist_name" => "AtteanX-Store-LDF",
-  "dist_version" => "0.005_01",
+  "dist_version" => "0.005_02",
   "license" => "perl",
   "module_name" => "AtteanX::Store::LDF",
   "recursive_test_files" => 1,

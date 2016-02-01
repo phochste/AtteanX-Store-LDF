@@ -1,24 +1,24 @@
 language: perl
 perl:
-    - "5.20"
-    - "5.18"
-    - "5.16"
-
-env: PERL_CPANM_OPT="--notest --force --skip-satisfied"
-
-# fix https://github.com/miyagawa/cpanminus/issues/412    
+  - "5.14"
+  - "5.20"
+  - "5.22"
 before_install:
-    - cpanm -nq Pod::Readme
-
+  - export DIST_INKT_PROFILE="Dist::Inkt::Profile::TOBYINK"
+  - git clone git://github.com/tobyink/perl-travis-helper
+  - source perl-travis-helper/init
+  - build-perl
+  - perl -V
+  - build-dist
+  - cd $BUILD_DIR
 install:
-    - cpanm --quiet --notest --skip-satisfied Dist::Milla
-    - cpanm --installdeps .
-
-# full release test
+  - cpan-install --toolchain
+  - cpan-install --deps
+  - cpan-install --coverage
+before_script:
+  - coverage-setup
 script:
-    - milla smoke --release --author
-
-# normal tests and report test coverage to coveralls.io
+  - prove -l $(test-dirs)
 after_success:
-    - cpanm --quiet --notest --skip-satisfied Devel::Cover::Report::Coveralls
-    - perl Build.PL && ./Build build && cover -test -report coveralls
+  - coverage-report
+

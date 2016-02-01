@@ -38,12 +38,13 @@ AtteanX::Store::LDF provides a triple-store connected to a Linked Data Fragment 
 For more information on Triple Pattern Fragments consult L<http://linkeddatafragments.org/>
 
 =cut
+
 use v5.14;
 use warnings;
 
 package AtteanX::Store::LDF;
 
-our $VERSION = '0.003';
+our $VERSION = '0.005_01';
 
 use Moo;
 use Attean::API::Store;
@@ -52,7 +53,8 @@ use Types::Standard qw(Str);
 use RDF::LDF;
 use namespace::clean;
 
-with 'Attean::API::TripleStore';
+with 'Attean::API::TripleStore', 'MooX::Log::Any';
+
 
 =head1 METHODS
 
@@ -80,7 +82,10 @@ sub _term_as_string {
     if (!defined $term) {
         return undef
     }
-    elsif ($term->does('Attean::API::Literal')) {
+	 elsif ($term->is_variable) {
+		 return undef;
+	 }
+    elsif ($term->is_literal) {
         return $term->as_string; # includes quotes and any language or datatype
     } 
     else {
@@ -171,6 +176,28 @@ sub get_triples {
     return $iter;
 }
 
+=item cost_for_plan($plan)
+
+Returns an cost estimation for a single LDF triple based on
+estimates. The cost will be in the interval 10-1000 if the supplied
+argument is a L<AtteanX::Store::LDF::Plan::Triple>, undef otherwise.
+
+=cut
+
+sub cost_for_plan {
+	my $self	= shift;
+ 	my $plan	= shift;
+	if ($plan->isa('AtteanX::Store::LDF::Plan::Triple')) {
+		my $totals = $self->count_triples_estimate();
+		if ($totals < 1) {
+			$self->log->error("Total number of triples in model were $totals, probably an error");
+			return 10000; # Probably a plan we don't want
+		}
+		return 10 + int(990 * $self->count_triples_estimate($plan->values) / $totals)
+	}
+	return;
+}
+
 1;
 
 __END__
@@ -189,10 +216,12 @@ at L<https://github.com/phochste/AtteanX-Store-LDF>.
 =head1 AUTHOR
 
 Patrick Hochstenbach  C<< <patrick.hochstenbach@ugent.be> >>
+Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
 
 =head1 COPYRIGHT
 
 This software is copyright (c) 2015 by Patrick Hochstenbach.
+This software is copyright (c) 2016 by Patrick Hochstenbach and Kjetil Kjernsmo.
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 

@@ -25,6 +25,7 @@ my %module_build_args = (
   "recursive_test_files" => 1,
   "requires" => {
     "Attean" => "0.006",
+	 "MooX::Log::Any" => 0,
     "RDF::LDF" => 0,
     "perl" => "v5.14.1"
   },

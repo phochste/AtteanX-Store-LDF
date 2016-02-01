@@ -15,7 +15,7 @@ AtteanX::Store::LDF - Linked Data Fragment RDF store
     use AtteanX::Store::LDF;
 
     my $uri   = 'http://fragments.dbpedia.org/2014/en';
-    my $store = Attean->get_store('LDF')->new(endpoint_url => $uri);
+    my $store = Attean->get_store('LDF')->new(start_url => $uri);
 
     my $iter = $store->get_triples(undef,undef,literal("Albert Einstein"));
 

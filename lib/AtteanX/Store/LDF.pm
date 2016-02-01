@@ -19,7 +19,7 @@ AtteanX::Store::LDF - Linked Data Fragment RDF store
     use AtteanX::Store::LDF;
 
     my $uri   = 'http://fragments.dbpedia.org/2014/en';
-    my $store = Attean->get_store('LDF')->new(endpoint_url => $uri);
+    my $store = Attean->get_store('LDF')->new(start_url => $uri);
 
     my $iter = $store->get_triples(undef,undef,literal("Albert Einstein"));
 
@@ -63,18 +63,19 @@ L<Attean::API::TripleStore> class.
 
 =over 4
 
-=item new( endpoint_url => $endpoint_url )
+=item new( start_url => $start_url )
 
 Returns a new LDF-backed storage object.
 
 =cut
 
-has endpoint_url => (is => 'ro', isa => Str, required => 1);
+has start_url => (is => 'ro', isa => Str, required => 1);
+has endpoint_url => (is => 'ro', isa => Str);
 has ldf => (is => 'ro', lazy => 1, builder => '_ldf');
 
 sub _ldf {
     my $self = shift;
-    RDF::LDF->new(url => $self->endpoint_url);
+    RDF::LDF->new(url => $self->start_url);
 }
 
 sub _term_as_string {

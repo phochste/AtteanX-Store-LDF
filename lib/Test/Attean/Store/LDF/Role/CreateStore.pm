@@ -61,7 +61,7 @@ sub create_store {
 		return $ld->response($uri)->finalize;
 	});
 
-	my $store = Attean->get_store('LDF')->new(endpoint_url => $endpoint);
+	my $store = Attean->get_store('LDF')->new(start_url => $endpoint);
 
 	RDF::Trine->default_useragent($useragent);
 

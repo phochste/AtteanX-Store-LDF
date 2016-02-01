@@ -1,0 +1,25 @@
+# This file provides instructions for packaging.
+
+@prefix : <http://ontologi.es/doap-deps#>.
+
+`AtteanX-Store-LDF`
+	:test-requirement       [ :on "Test::More 0.88"^^:CpanId ];
+	:test-requirement       [ :on "Test::Exception"^^:CpanId ];
+	:test-requirement       [ :on "Test::Roo"^^:CpanId ];
+	:test-requirement       [ :on "RDF::LinkedData 0.74"^^:CpanId ];
+	:test-requirement       [ :on "RDF::Generator::Void"^^:CpanId ];
+	:test-requirement       [ :on "Test::LWP::UserAgent 0.027"^^:CpanId ];
+	:runtime-suggestion     [ :on "RDF::LinkedData 0.74"^^:CpanId ];
+	:runtime-suggestion     [ :on "HTTP::Message::PSGI"^^:CpanId ];
+	:runtime-suggestion     [ :on "Test::LWP::UserAgent 0.027"^^:CpanId ];
+        :runtime-requirement    [ :on "Moo 1.006000"^^:CpanId ];
+        :runtime-requirement    [ :on "Attean 0.010"^^:CpanId ];
+        :runtime-requirement    [ :on "Types::URI"^^:CpanId ];
+        :runtime-requirement    [ :on "RDF::LDF"^^:CpanId ];
+        :runtime-requirement    [ :on "perl 5.014"^^:CpanId ] ;
+        :runtime-requirement    [ :on "Carp"^^:CpanId ] ;
+        :runtime-requirement    [ :on "MooX::Log::Any"^^:CpanId ] ;
+        :runtime-requirement    [ :on "Data::Dumper"^^:CpanId ] ;
+	:develop-recommendation [ :on "Dist::Inkt 0.001"^^:CpanId ];
+	.
+

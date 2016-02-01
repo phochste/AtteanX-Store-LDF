@@ -49,9 +49,10 @@ our $VERSION = '0.005_02';
 use Moo;
 use Attean::API::Store;
 use Type::Tiny::Role;
-use Types::Standard qw(Str);
+use Types::URI -all;
 use RDF::LDF;
 use namespace::clean;
+use Carp;
 
 with 'Attean::API::TripleStore', 'MooX::Log::Any';
 
@@ -65,13 +66,19 @@ L<Attean::API::TripleStore> class.
 
 =item new( start_url => $start_url )
 
-Returns a new LDF-backed storage object.
+Returns a new LDF-backed storage object. The required C<start_url>
+argument is a URL pointing at any Linked Data Fragment. The attribure
+will be coerced, so it can be a string, a URI object, etc.
 
 =cut
 
-has start_url => (is => 'ro', isa => Str, required => 1);
-has endpoint_url => (is => 'ro', isa => Str);
+has start_url => (is => 'ro', isa => Uri, coerce => 1, required => 1);
+has endpoint_url => (is => 'ro', lazy => 1, builder => '_croak_on_endpoint');
 has ldf => (is => 'ro', lazy => 1, builder => '_ldf');
+
+sub _croak_on_endpoint {
+	Carp::croak "endpoint_url has been deprecated, use start_url instead";
+}
 
 sub _ldf {
     my $self = shift;

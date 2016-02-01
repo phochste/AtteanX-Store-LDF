@@ -1,0 +1,30 @@
+# This file contains general metadata about the project.
+
+@prefix : <http://usefulinc.com/ns/doap#>.
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#>.
+
+`AtteanX-Store-LDF`
+	:programming-language "Perl" ;
+	:shortdesc            "Attean Linked Data Fragments store";
+        dc:identifier "AtteanX::Store::LDF"^^<http://ontologi.es/doap-deps#CpanId> ;    
+	:homepage             <https://metacpan.org/release/AtteanX-Store-LDF>;
+	:download-page        <https://metacpan.org/release/AtteanX-Store-LDF>;
+	:bug-database         <https://github.com/phochste/AtteanX-Store-LDF/issues>;
+	:repository           [ a :GitRepository; 
+                                :browse <https://github.com/phochste/AtteanX-Store-LDF> ;
+                                prov:has_provenance <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fphochste%2FAtteanX-Store-LDF.git&serialization=PROV-O#>
+                              ];
+        :category             <http://dbpedia.org/resource/Category:Semantic_Web> , 
+                              <http://dbpedia.org/resource/Category:Triplestores> ;
+	:created              2015-06-23;
+	:license              <http://dev.perl.org/licenses/>;
+	:maintainer           <http://www.kjetil.kjernsmo.net/foaf#me>;
+        :developer            <http://www.kjetil.kjernsmo.net/foaf#me>;
+	:maintainer           <http://purl.org/NET/cpan-uri/person/hochsten>;
+        :developer            <http://purl.org/NET/cpan-uri/person/hochsten>;
+        :helper               <http://kasei.us/about/foaf.xrdf#greg>.
+
+<http://dev.perl.org/licenses/>
+	dc:title  "the same terms as the perl 5 programming language system itself".
+

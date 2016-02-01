@@ -17,7 +17,7 @@
                               ];
         :category             <http://dbpedia.org/resource/Category:Semantic_Web> , 
                               <http://dbpedia.org/resource/Category:Triplestores> ;
-	:created              2015-06-23;
+	:created              2015-07-03;
 	:license              <http://dev.perl.org/licenses/>;
 	:maintainer           <http://www.kjetil.kjernsmo.net/foaf#me>;
         :developer            <http://www.kjetil.kjernsmo.net/foaf#me>;

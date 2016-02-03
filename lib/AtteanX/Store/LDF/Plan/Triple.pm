@@ -34,7 +34,7 @@ package AtteanX::Store::LDF::Plan::Triple;
 use v5.14;
 use warnings;
 
-our $VERSION = '0.005_02';
+our $VERSION = '0.01';
 
 use Moo;
 use Class::Method::Modifiers;

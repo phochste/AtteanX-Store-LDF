@@ -41,7 +41,6 @@ use Class::Method::Modifiers;
 use Attean;
 use Carp;
 use Scalar::Util qw(blessed reftype);
-use Types::Standard qw(ConsumerOf ArrayRef);
 use namespace::clean;
 
 has 'subject'	=> (is => 'ro', required => 1);

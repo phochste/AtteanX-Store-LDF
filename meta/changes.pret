@@ -1,0 +1,26 @@
+# This file acts as the project's changelog.
+
+`AtteanX-Store-LDF 0.005_02 cpan:KJETILK`
+    issued  2016-02-01;
+    label   "Packaging changes" .
+
+`AtteanX-Store-LDF 0.005_01 cpan:KJETILK`
+    issued  2016-02-01;
+    label   "Add planner support" .
+
+
+`AtteanX-Store-LDF 0.003 cpan:HOCHSTEN`
+    issued  2015-08-17;
+    label   "changing count_triples into more accurate count_triples_estimate" .
+    
+
+`AtteanX-Store-LDF 0.002 cpan:HOCHSTEN`
+    issued  2015-07-06;
+    label   "Setting minimum requirements for RDF::LinkedData test" .
+    
+
+`AtteanX-Store-LDF 0.001 cpan:HOCHSTEN`
+    issued  2015-07-03;
+    label   "Initial release".
+
+

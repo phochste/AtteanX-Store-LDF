@@ -4,7 +4,7 @@ use Attean::RDF qw(iri blank literal);
 use AtteanX::Store::LDF;
 
 my $uri   = 'http://fragments.dbpedia.org/2014/en';
-my $store = Attean->get_store('LDF')->new(endpoint_url => $uri);
+my $store = Attean->get_store('LDF')->new(start_url => $uri);
 
 my $num  = $store->count_triples(iri('http://example.org/UNEXPECTED'));
 

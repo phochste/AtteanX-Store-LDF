@@ -19,7 +19,7 @@ AtteanX::Store::LDF - Linked Data Fragment RDF store
     use AtteanX::Store::LDF;
 
     my $uri   = 'http://fragments.dbpedia.org/2014/en';
-    my $store = Attean->get_store('LDF')->new(endpoint_url => $uri);
+    my $store = Attean->get_store('LDF')->new(start_url => $uri);
 
     my $iter = $store->get_triples(undef,undef,literal("Albert Einstein"));
 
@@ -38,21 +38,24 @@ AtteanX::Store::LDF provides a triple-store connected to a Linked Data Fragment 
 For more information on Triple Pattern Fragments consult L<http://linkeddatafragments.org/>
 
 =cut
+
 use v5.14;
 use warnings;
 
 package AtteanX::Store::LDF;
 
-our $VERSION = '0.003';
+our $VERSION = '0.005_02';
 
 use Moo;
 use Attean::API::Store;
 use Type::Tiny::Role;
-use Types::Standard qw(Str);
+use Types::URI -all;
 use RDF::LDF;
 use namespace::clean;
+use Carp;
 
-with 'Attean::API::TripleStore';
+with 'Attean::API::TripleStore', 'MooX::Log::Any';
+
 
 =head1 METHODS
 
@@ -61,18 +64,25 @@ L<Attean::API::TripleStore> class.
 
 =over 4
 
-=item new( endpoint_url => $endpoint_url )
+=item new( start_url => $start_url )
 
-Returns a new LDF-backed storage object.
+Returns a new LDF-backed storage object. The required C<start_url>
+argument is a URL pointing at any Linked Data Fragment. The attribure
+will be coerced, so it can be a string, a URI object, etc.
 
 =cut
 
-has endpoint_url => (is => 'ro', isa => Str, required => 1);
+has start_url => (is => 'ro', isa => Uri, coerce => 1, required => 1);
+has endpoint_url => (is => 'ro', lazy => 1, builder => '_croak_on_endpoint');
 has ldf => (is => 'ro', lazy => 1, builder => '_ldf');
+
+sub _croak_on_endpoint {
+	Carp::croak "endpoint_url has been deprecated, use start_url instead";
+}
 
 sub _ldf {
     my $self = shift;
-    RDF::LDF->new(url => $self->endpoint_url);
+    RDF::LDF->new(url => $self->start_url->as_string);
 }
 
 sub _term_as_string {
@@ -80,7 +90,10 @@ sub _term_as_string {
     if (!defined $term) {
         return undef
     }
-    elsif ($term->does('Attean::API::Literal')) {
+	 elsif ($term->is_variable) {
+		 return undef;
+	 }
+    elsif ($term->is_literal) {
         return $term->as_string; # includes quotes and any language or datatype
     } 
     else {
@@ -171,6 +184,28 @@ sub get_triples {
     return $iter;
 }
 
+=item cost_for_plan($plan)
+
+Returns an cost estimation for a single LDF triple based on
+estimates. The cost will be in the interval 10-1000 if the supplied
+argument is a L<AtteanX::Store::LDF::Plan::Triple>, undef otherwise.
+
+=cut
+
+sub cost_for_plan {
+	my $self	= shift;
+ 	my $plan	= shift;
+	if ($plan->isa('AtteanX::Store::LDF::Plan::Triple')) {
+		my $totals = $self->count_triples_estimate();
+		if ($totals < 1) {
+			$self->log->error("Total number of triples in model were $totals, probably an error");
+			return 10000; # Probably a plan we don't want
+		}
+		return 10 + int(990 * $self->count_triples_estimate($plan->values) / $totals)
+	}
+	return;
+}
+
 1;
 
 __END__
@@ -189,10 +224,12 @@ at L<https://github.com/phochste/AtteanX-Store-LDF>.
 =head1 AUTHOR
 
 Patrick Hochstenbach  C<< <patrick.hochstenbach@ugent.be> >>
+Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
 
 =head1 COPYRIGHT
 
 This software is copyright (c) 2015 by Patrick Hochstenbach.
+This software is copyright (c) 2016 by Patrick Hochstenbach and Kjetil Kjernsmo.
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 

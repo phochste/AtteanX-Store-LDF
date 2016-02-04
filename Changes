@@ -1,6 +1,11 @@
-Revision history for Catmandu
+Revision history for AtteanX-Store-LDF
 
 {{$NEXT}}
+
+0.006  2016-02-04 21:54:57 CEST
+    - Lots of changes related to integrating LDF into query planning.
+    - endpoint_url attribute has been deprecated in favour of a start_url attribute
+    - Fix bugs so that variables can be passed to selecting methods
 
 0.003  2015-08-17 11:57:25 CEST
     - changing count_triples into more accurate count_triples_estimate

@@ -1,13 +1,20 @@
 # This file acts as the project's changelog.
 
-`AtteanX-Store-LDF 0.005_02 cpan:KJETILK`
-    issued  2016-02-01;
+`AtteanX-Store-LDF 0.006 cpan:KJETILK`
+    issued  2016-02-04;
     label   "Packaging changes" .
-
-`AtteanX-Store-LDF 0.005_01 cpan:KJETILK`
-    issued  2016-02-01;
-    label   "Add planner support" .
-
+    changeset [
+        dcs:versus `AtteanX-Store-LDF 0.003 cpan:HOCHSTEN`;
+        item [ rdfs:label "Lots of changes related to integrating LDF into query planning.";
+               a dcs:Addition;
+             ];
+        item [ rdfs:label "endpoint_url attribute has been deprecated in favour of a start_url attribute.";
+               a dcs:Change;
+             ];
+        item [ rdfs:label "Fix bugs so that variables can be passed to selecting methods.";
+               a dcs:Bugfix;
+             ]
+    ].
 
 `AtteanX-Store-LDF 0.003 cpan:HOCHSTEN`
     issued  2015-08-17;

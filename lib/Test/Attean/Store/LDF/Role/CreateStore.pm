@@ -11,7 +11,7 @@ use HTTP::Message::PSGI;
 use Data::Dumper;
 use namespace::clean;
 
-our $VERSION = '0.006';
+our $VERSION = '0.07_01';
 
 sub create_store {
 	my $self = shift;

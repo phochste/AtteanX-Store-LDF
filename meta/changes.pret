@@ -2,7 +2,7 @@
 
 `AtteanX-Store-LDF 0.006 cpan:KJETILK`
     issued  2016-02-04;
-    label   "Packaging changes" .
+    label   "LDF query planning" .
     changeset [
         dcs:versus `AtteanX-Store-LDF 0.003 cpan:HOCHSTEN`;
         item [ rdfs:label "Lots of changes related to integrating LDF into query planning.";

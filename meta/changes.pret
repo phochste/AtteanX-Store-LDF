@@ -1,8 +1,22 @@
 # This file acts as the project's changelog.
 
+
+`AtteanX-Store-LDF 0.01 cpan:KJETILK`
+    issued  2016-02-09;
+    label   "Dist::Inkt packaging" ;
+    changeset [
+        dcs:versus `AtteanX-Store-LDF 0.006 cpan:KJETILK`;
+        item [ rdfs:label "Use Dist::Inkt packaging.";
+               a dcs:Changes;
+             ]
+    ] .
+    
+    
+
+
 `AtteanX-Store-LDF 0.006 cpan:KJETILK`
     issued  2016-02-04;
-    label   "LDF query planning" .
+    label   "LDF query planning" ;
     changeset [
         dcs:versus `AtteanX-Store-LDF 0.003 cpan:HOCHSTEN`;
         item [ rdfs:label "Lots of changes related to integrating LDF into query planning.";

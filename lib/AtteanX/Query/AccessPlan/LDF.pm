@@ -12,7 +12,7 @@ our $VERSION   = '0.01';
 use Moo::Role;
 use Carp;
 use RDF::LDF;
-use AtteanX::Store::LDF::Plan::Triple;
+use AtteanX::Plan::LDF::Triple;
 
 
 around 'access_plans' => sub {
@@ -27,7 +27,7 @@ around 'access_plans' => sub {
 	# include queries to the remote SPARQL endpoint
 	my @plans = $orig->(@params);
 	# Add my plans
-	push(@plans, AtteanX::Store::LDF::Plan::Triple->new(subject => $pattern->subject,
+	push(@plans, AtteanX::Plan::LDF::Triple->new(subject => $pattern->subject,
 																		 predicate => $pattern->predicate,
 																		 object => $pattern->object,
 																		 distinct => 0));
@@ -49,7 +49,7 @@ AtteanX::Query::AccessPlan::LDF - An access plan for Linked Data Fragments
 This provides the implementation of a L<Moo::Role> that serves to wrap
 any C<access_plan> in query planning. An access plan introduces a plan
 object for a triple or quad pattern, in this case a
-L<AtteanX::Store::LDF::Plan::Triple> object.
+L<AtteanX::Plan::LDF::Triple> object.
 
 =head1 AUTHOR
 

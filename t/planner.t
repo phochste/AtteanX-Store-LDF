@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More;
 use Test::Roo;
-use AtteanX::Store::LDF::Plan::Triple;
+use AtteanX::Plan::LDF::Triple;
 use Attean::RDF;
 
 package TestCreateStore {
@@ -19,12 +19,12 @@ my $triples = [
 				  ];
 
 my $test = TestCreateStore->new;
-my $plan = AtteanX::Store::LDF::Plan::Triple->new(subject => variable('s'),
+my $plan = AtteanX::Plan::LDF::Triple->new(subject => variable('s'),
 																  predicate => iri('http://example.org/p'),
 																  object => variable('o'),
 																  distinct => 0
 																 );
-isa_ok($plan, 'AtteanX::Store::LDF::Plan::Triple');
+isa_ok($plan, 'AtteanX::Plan::LDF::Triple');
 is($plan->as_string, "- LDFTriple { ?s, <http://example.org/p>, ?o }\n", 'Serialized plan ok');
 
 
@@ -39,12 +39,12 @@ is($plan->as_string, "- LDFTriple { ?s, <http://example.org/p>, ?o }\n", 'Serial
 }
 
 {
-	my $plan2 = AtteanX::Store::LDF::Plan::Triple->new(subject => variable('s'),
+	my $plan2 = AtteanX::Plan::LDF::Triple->new(subject => variable('s'),
 																		predicate => iri('http://example.org/nothere'),
 																		object => variable('o'),
 																		distinct => 0
 																	  );
-	isa_ok($plan2, 'AtteanX::Store::LDF::Plan::Triple');
+	isa_ok($plan2, 'AtteanX::Plan::LDF::Triple');
 	is($plan2->as_string, "- LDFTriple { ?s, <http://example.org/nothere>, ?o }\n", 'Serialized plan ok');
 	my $store = $test->create_store(triples => $triples);
 	is($store->cost_for_plan($plan2), 10, 'Correct cost for plan with populated store but no hits');

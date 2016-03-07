@@ -189,14 +189,14 @@ sub get_triples {
 
 Returns an cost estimation for a single LDF triple based on
 estimates. The cost will be in the interval 10-1000 if the supplied
-argument is a L<AtteanX::Store::LDF::Plan::Triple>, undef otherwise.
+argument is a L<AtteanX::Plan::LDF::Triple>, undef otherwise.
 
 =cut
 
 sub cost_for_plan {
 	my $self	= shift;
  	my $plan	= shift;
-	if ($plan->isa('AtteanX::Store::LDF::Plan::Triple')) {
+	if ($plan->isa('AtteanX::Plan::LDF::Triple')) {
 		my $totals = $self->count_triples_estimate();
 		if ($totals < 1) {
 			$self->log->error("Total number of triples in model were $totals, probably an error");

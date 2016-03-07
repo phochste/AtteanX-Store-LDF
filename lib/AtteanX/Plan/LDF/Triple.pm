@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-AtteanX::Store::LDF::Plan::Triple - Plan for evaluation of Linked Data Fragments
+AtteanX::Plan::LDF::Triple - Plan for evaluation of Linked Data Fragments
 
 =head1 SYNOPSIS
 
@@ -10,8 +10,8 @@ This is typically only constructed by planning hacks deep in the code,
 but might look like e.g.:
 
   use v5.14;
-  use AtteanX::Store::LDF::Plan::Triple;
-  my $ldf_plan = AtteanX::Store::LDF::Plan::Triple->new(subject => $subject,
+  use AtteanX::Plan::LDF::Triple;
+  my $ldf_plan = AtteanX::Plan::LDF::Triple->new(subject => $subject,
                                                         predicate => $predicate,
                                                         object => $object);
 
@@ -24,7 +24,7 @@ Linked Data Fragments into the query planning.
 =cut
 
 
-package AtteanX::Store::LDF::Plan::Triple;
+package AtteanX::Plan::LDF::Triple;
 # Most of the code is shamelessly stolen from Attean::API::Quad, since
 # it has very much in common with that module. Unfortunately, this has
 # just triple semantics, so it cannot just simply be extended. This

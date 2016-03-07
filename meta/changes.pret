@@ -1,17 +1,27 @@
 # This file acts as the project's changelog.
 
 
+`AtteanX-Store-LDF 0.02 cpan:KJETILK`
+    issued  2016-03-07;
+    label   "API change for plan" ;
+    changeset [
+        dcs:versus `AtteanX-Store-LDF 0.01 cpan:KJETILK`;
+        item [ rdfs:label "Rename AtteanX::Store::LDF::Plan::Triple to AtteanX::Plan::LDF::Triple.";
+               a dcs:Change;
+             ]
+    ] .
+    
 `AtteanX-Store-LDF 0.01 cpan:KJETILK`
     issued  2016-02-09;
     label   "Dist::Inkt packaging" ;
     changeset [
         dcs:versus `AtteanX-Store-LDF 0.006 cpan:KJETILK`;
         item [ rdfs:label "Use Dist::Inkt packaging.";
-               a dcs:Changes;
+               a dcs:Change;
              ]
     ] .
     
-    
+        
 
 
 `AtteanX-Store-LDF 0.006 cpan:KJETILK`

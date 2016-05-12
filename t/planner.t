@@ -24,19 +24,26 @@ my $plan = AtteanX::Plan::LDF::Triple->new(subject => variable('s'),
 																  object => variable('o'),
 																  distinct => 0
 																 );
+my $planner = Attean::QueryPlanner->new;
+
 isa_ok($plan, 'AtteanX::Plan::LDF::Triple');
 is($plan->as_string, "- LDFTriple { ?s, <http://example.org/p>, ?o }\n", 'Serialized plan ok');
 
 
 {
-	my $store = $test->create_store(triples => []);
-	can_ok($store, 'cost_for_plan');
-	is($store->cost_for_plan($plan), 10000, 'Correct cost for plan with empty store');
+	my $model = Attean::TripleModel->new( stores => {
+																	 'http://example.org/graph1' => $test->create_store(triples => [])
+																	 });
+	can_ok($model, 'cost_for_plan');
+	can_ok($model, 'plans_for_algebra');
+	is($model->cost_for_plan($plan, $planner), 10000, 'Correct cost for plan with empty store');
 }
 
 {
-	my $store = $test->create_store(triples => $triples);
-	is($store->cost_for_plan($plan), 406, 'Correct cost for plan with populated store');
+	my $model = Attean::TripleModel->new( stores => {
+																	 'http://example.org/graph1' => $test->create_store(triples => $triples)
+																	});
+	is($model->cost_for_plan($plan, $planner), 406, 'Correct cost for plan with populated store');
 }
 
 {
@@ -47,8 +54,10 @@ is($plan->as_string, "- LDFTriple { ?s, <http://example.org/p>, ?o }\n", 'Serial
 																	  );
 	isa_ok($plan2, 'AtteanX::Plan::LDF::Triple');
 	is($plan2->as_string, "- LDFTriple { ?s, <http://example.org/nothere>, ?o }\n", 'Serialized plan ok');
-	my $store = $test->create_store(triples => $triples);
-	is($store->cost_for_plan($plan2), 10, 'Correct cost for plan with populated store but no hits');
+	my $model = Attean::TripleModel->new( stores => {
+																	 'http://example.org/graph1' => $test->create_store(triples => $triples)
+																	});
+	is($model->cost_for_plan($plan2, $planner), 10, 'Correct cost for plan with populated store but no hits');
 }
 
 done_testing;

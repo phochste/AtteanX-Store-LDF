@@ -30,6 +30,7 @@ is($plan->as_string, "- LDFTriple { ?s, <http://example.org/p>, ?o }\n", 'Serial
 
 {
 	my $store = $test->create_store(triples => []);
+	can_ok($store, 'cost_for_plan');
 	is($store->cost_for_plan($plan), 10000, 'Correct cost for plan with empty store');
 }
 

@@ -48,14 +48,14 @@ our $AUTHORITY = 'cpan:KJETILK';
 our $VERSION = '0.02';
 
 use Moo;
-use Attean::API::Store;
+use Attean;
 use Type::Tiny::Role;
 use Types::URI -all;
 use RDF::LDF;
 use namespace::clean;
 use Carp;
 
-with 'Attean::API::TripleStore', 'MooX::Log::Any';
+with 'Attean::API::TripleStore', 'Attean::API::CostPlanner', 'MooX::Log::Any';
 
 
 =head1 METHODS
@@ -205,6 +205,16 @@ sub cost_for_plan {
 		return 10 + int(990 * $self->count_triples_estimate($plan->values) / $totals)
 	}
 	return;
+}
+
+=item plans_for_algebra($algebra)
+
+Returns an empty plan since access_plans generates the needed plans.
+
+=cut
+
+sub plans_for_algebra {
+	return ();
 }
 
 1;

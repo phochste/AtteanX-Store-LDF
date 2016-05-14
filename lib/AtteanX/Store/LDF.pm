@@ -45,7 +45,7 @@ use warnings;
 package AtteanX::Store::LDF;
 
 our $AUTHORITY = 'cpan:KJETILK';
-our $VERSION = '0.02';
+our $VERSION = '0.04';
 
 use Moo;
 use Attean;

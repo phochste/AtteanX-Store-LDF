@@ -1,6 +1,19 @@
 # This file acts as the project's changelog.
 
 
+`AtteanX-Store-LDF 0.04 cpan:KJETILK`
+    issued  2016-05-15;
+    label   "Quality improvements" ;
+    changeset [
+        dcs:versus `AtteanX-Store-LDF 0.02 cpan:KJETILK`;
+        item [ rdfs:label "Use the CostPlanner API correctly.";
+               a dcs:Change;
+             ];
+        item [ rdfs:label "Change hashbang to use env.";
+               a dcs:Change;
+             ]
+    ] .
+
 `AtteanX-Store-LDF 0.02 cpan:KJETILK`
     issued  2016-03-07;
     label   "API change for plan" ;
@@ -10,7 +23,7 @@
                a dcs:Change;
              ]
     ] .
-    
+
 `AtteanX-Store-LDF 0.01 cpan:KJETILK`
     issued  2016-02-09;
     label   "Dist::Inkt packaging" ;

@@ -4,4 +4,5 @@ BEGIN {
     use_ok( 'AtteanX::Store::LDF' );
 }
 
-note( "Testing RDF ${AtteanX::Store::LDF::VERSION}" );
+
+diag( "Testing AtteanX::Store::LDF $AtteanX::Store::LDF::VERSION, Perl $], $^X" );
